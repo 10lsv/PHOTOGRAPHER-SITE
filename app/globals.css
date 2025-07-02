@@ -12,11 +12,13 @@
       "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #000000;
+    color: #ffffff;
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
   }
 }
 
@@ -104,7 +106,7 @@
       opacity: 0;
     }
     100% {
-      width: 96px;
+      width: 128px;
       opacity: 1;
     }
   }
@@ -112,7 +114,7 @@
   @keyframes fade-in-up {
     0% {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
     100% {
       opacity: 1;
@@ -242,6 +244,7 @@
   .photo-container {
     position: relative;
     overflow: hidden;
+    border-radius: 8px;
   }
 
   .photo-container::before {
@@ -251,8 +254,8 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s;
     z-index: 1;
   }
 
@@ -262,10 +265,10 @@
 
   @keyframes photo-glow {
     0% {
-      box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
     }
     100% {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
     }
   }
 
@@ -275,6 +278,10 @@
 
   .font-extralight {
     font-weight: 200;
+  }
+
+  .font-thin {
+    font-weight: 100;
   }
 
   /* Smooth exit animation */
@@ -298,6 +305,59 @@
       transform: scale(0.95) translateY(-20px);
       filter: blur(10px);
     }
+  }
+
+  /* Dark theme specific styles */
+  .bg-black {
+    background-color: #000000;
+  }
+
+  .text-white {
+    color: #ffffff;
+  }
+
+  .border-gray-800 {
+    border-color: #1f2937;
+  }
+
+  .text-gray-300 {
+    color: #d1d5db;
+  }
+
+  .text-gray-400 {
+    color: #9ca3af;
+  }
+
+  .text-gray-500 {
+    color: #6b7280;
+  }
+
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-white\/20 {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .bg-black\/30 {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-black\/80 {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .bg-black\/95 {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+
+  .text-white\/90 {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .border-white\/50 {
+    border-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -324,4 +384,22 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
 }
