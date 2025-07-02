@@ -5,45 +5,44 @@ import Image from "next/image"
 import Link from "next/link"
 import { Instagram } from "lucide-react"
 
-// Fonction pour extraire le groupe depuis le nom du fichier
 const getGroupFromFilename = (filename: string) => {
   const name = filename.split("/").pop() || ""
   const firstWord = name.split(/[-_\s]/)[0].toLowerCase()
   return firstWord
 }
 
-// Photos organisées par groupes
 const photoGroups = {
-  sport: [
-    { id: 1, src: "/images/sport-1.jpg", alt: "Sport action 1" },
-    { id: 2, src: "/images/sport-2.jpg", alt: "Sport action 2" },
-    { id: 3, src: "/images/sport-3.jpg", alt: "Sport action 3" },
+  paysage: [
+    { id: 1, src: "/images/paysage18.jpg", alt: "Paysage 1" },
+    { id: 2, src: "/images/paysage8.jpg", alt: "Paysage 2" },
+    { id: 3, src: "/images/paysage17.jpg", alt: "Paysage 3" },
   ],
-  portrait: [
-    { id: 4, src: "/images/portrait-1.jpg", alt: "Portrait 1" },
-    { id: 5, src: "/images/portrait-2.jpg", alt: "Portrait 2" },
-    { id: 6, src: "/images/portrait-3.jpg", alt: "Portrait 3" },
+  fcca: [
+    { id: 4, src: "/images/fcca6.jpg", alt: "Portrait 1" },
+    { id: 5, src: "/images/fcca24.jpg", alt: "Portrait 2" },
+    { id: 6, src: "/images/fcca10.jpg", alt: "Portrait 3" },
   ],
-  lifestyle: [
-    { id: 7, src: "/images/lifestyle-1.jpg", alt: "Lifestyle 1" },
-    { id: 8, src: "/images/lifestyle-2.jpg", alt: "Lifestyle 2" },
-    { id: 9, src: "/images/lifestyle-3.jpg", alt: "Lifestyle 3" },
+  athlétisme: [
+    { id: 7, src: "/images/athle15.jpg", alt: "Lifestyle 1" },
+    { id: 8, src: "/images/athle5.jpg", alt: "Lifestyle 2" },
+    { id: 9, src: "/images/athle14.jpg", alt: "Lifestyle 3" },
   ],
-  architecture: [
-    { id: 10, src: "/images/architecture-1.jpg", alt: "Architecture 1" },
-    { id: 11, src: "/images/architecture-2.jpg", alt: "Architecture 2" },
+  AST: [
+    { id: 10, src: "/images/tourla3.jpg", alt: "Architecture 1" },
+    { id: 11, src: "/images/tourla13.webp", alt: "Architecture 2" },
+    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 2" }
   ],
 }
 
 export default function Home() {
   const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; alt: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [activeGroup, setActiveGroup] = useState<string>("sport")
+  const [activeGroup, setActiveGroup] = useState<string>("AST")
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean[] }>({})
   const groupRefs = useRef<{ [key: string]: (HTMLDivElement | null)[] }>({})
 
-  // Initialize visibility state for all groups
+
   useEffect(() => {
     const initialVisibility: { [key: string]: boolean[] } = {}
     Object.keys(photoGroups).forEach((group) => {
@@ -53,7 +52,6 @@ export default function Home() {
     setIsVisible(initialVisibility)
   }, [])
 
-  // Loading animation
   useEffect(() => {
     const timer = setTimeout(() => {
       const loader = document.querySelector(".mobile-loader")
@@ -68,7 +66,6 @@ export default function Home() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Scroll effects
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY)
