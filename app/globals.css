@@ -359,6 +359,20 @@
   .border-white\/50 {
     border-color: rgba(255, 255, 255, 0.5);
   }
+
+  /* Profile picture in letter styling */
+  .profile-in-letter {
+    position: relative;
+    display: inline-block;
+  }
+
+  .profile-in-letter::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 35%, currentColor 36%);
+    z-index: 1;
+  }
 }
 
 @layer base {
@@ -375,6 +389,38 @@
   .bold-letters {
     font-size: 30vw;
     line-height: 0.8;
+  }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
+  .bold-letters {
+    font-size: 15vw;
+    line-height: 0.9;
+  }
+
+  /* Ensure profile pic scales properly on very small screens */
+  .profile-pic-mobile {
+    width: 8vw;
+    height: 8vw;
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 48px;
+    max-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bold-letters {
+    font-size: 16vw;
+  }
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  button {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 

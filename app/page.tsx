@@ -22,7 +22,7 @@ const photoGroups = {
     { id: 5, src: "/images/fcca24.jpg", alt: "Portrait 2" },
     { id: 6, src: "/images/fcca10.jpg", alt: "Portrait 3" },
   ],
-  athlétisme: [
+  "caen-athletic": [
     { id: 7, src: "/images/athle15.jpg", alt: "Lifestyle 1" },
     { id: 8, src: "/images/athle5.jpg", alt: "Lifestyle 2" },
     { id: 9, src: "/images/athle14.jpg", alt: "Lifestyle 3" },
@@ -30,18 +30,17 @@ const photoGroups = {
   AST: [
     { id: 10, src: "/images/tourla3.jpg", alt: "Architecture 1" },
     { id: 11, src: "/images/tourla13.webp", alt: "Architecture 2" },
-    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 2" }
+    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 2" },
   ],
 }
 
 export default function Home() {
   const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; alt: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [activeGroup, setActiveGroup] = useState<string>("AST")
+  const [activeGroup, setActiveGroup] = useState<string>("caen-athletic")
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean[] }>({})
   const groupRefs = useRef<{ [key: string]: (HTMLDivElement | null)[] }>({})
-
 
   useEffect(() => {
     const initialVisibility: { [key: string]: boolean[] } = {}
@@ -113,7 +112,16 @@ export default function Home() {
       <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-40 border-b border-gray-800 animate-slide-down">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-xl font-light tracking-wider">PS</div>
+            {/* Profile Picture Logo */}
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30">
+              <Image
+                src="/images/profil-pic.jpg"
+                alt="Paul Salvadori"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <nav className="flex space-x-8 text-sm">
               <Link
                 href="/about"
@@ -127,33 +135,45 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 min-h-screen flex flex-col items-center justify-center">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-thin tracking-wider mb-8 animate-fade-in-up">PAUL SALVADORI</h1>
-          <div className="w-32 h-px bg-white mb-8 mx-auto animate-expand-line"></div>
-          <p className="text-lg md:text-xl text-gray-300 font-light tracking-[0.3em] animate-fade-in-up animation-delay-500">
-            FRENCH PHOTOGRAPHER
-          </p>
-        </div>
+      <section className="relative pt-20 pb-12 px-4 min-h-screen flex flex-col items-center justify-center">
+        <div className="text-center max-w-4xl mx-auto relative">
+          {/* Main Title */}
+          <div className="relative mb-4">
+            {/* PAUL */}
+            <h1 className="text-[15vw] sm:text-[12vw] md:text-8xl lg:text-9xl font-black tracking-tight leading-none animate-fade-in-up">
+              PAUL
+            </h1>
 
-        {/* Group Navigation */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-          <div className="flex space-x-6 bg-white/10 backdrop-blur-md rounded-full px-8 py-4 animate-fade-in-up animation-delay-1000">
-            {Object.keys(photoGroups).map((group) => (
-              <button
-                key={group}
-                onClick={() => setActiveGroup(group)}
-                className={`px-4 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 ${
-                  activeGroup === group ? "bg-white text-black" : "text-white hover:bg-white/20"
-                }`}
-              >
-                {group.toUpperCase()}
-              </button>
-            ))}
+            {/* SALVADORI */}
+            <h1 className="text-[15vw] sm:text-[12vw] md:text-8xl lg:text-9xl font-black tracking-tight leading-none mt-2 animate-fade-in-up animation-delay-200">
+              SALVADORI
+            </h1>
+          </div>
+
+          {/* Decorative Line */}
+          <div className="w-24 sm:w-32 h-px bg-white mb-6 mx-auto animate-expand-line animation-delay-500"></div>
+
+          {/* Location */}
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light tracking-[0.2em] sm:tracking-[0.3em] animate-fade-in-up animation-delay-800 mb-12">
+            CHERBOURG, FRANCE
+          </p>
+
+          {/* Profile Picture - Between location and first section */}
+          <div className="flex justify-center mb-16 animate-photo-reveal animation-delay-1000">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-3 border-white/30 shadow-2xl">
+              <Image
+                src="/images/profil-pic.jpg"
+                alt="Paul Salvadori"
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
           <div className="w-8 h-8 border border-gray-500 rounded-full flex items-center justify-center hover:border-white transition-colors duration-300">
             <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -166,11 +186,32 @@ export default function Home() {
       {Object.entries(photoGroups).map(([groupName, photos]) => (
         <section key={groupName} className="py-20 px-6">
           <div className="max-w-7xl mx-auto">
-            {/* Group Title */}
+            {/* Group Title with Logo - Single Line Layout */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-6xl font-thin tracking-wider mb-4 text-white/90">
-                {groupName.toUpperCase()}
-              </h2>
+              <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-wider text-white/90 whitespace-nowrap">
+                  {groupName === "caen-athletic" ? "CAEN ATHLETIC" : groupName.toUpperCase()}
+                </h2>
+
+                {/* Larger round logos */}
+                {groupName === "fcca" && (
+                  <div className="w-12 h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                    <Image src="/images/fcca-logo.jpg" alt="FCCA Logo" fill className="object-cover" />
+                  </div>
+                )}
+
+                {groupName === "AST" && (
+                  <div className="w-12 h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                    <Image src="/images/ast-logo.jpg" alt="AST Logo" fill className="object-cover" />
+                  </div>
+                )}
+
+                {groupName === "caen-athletic" && (
+                  <div className="w-12 h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                    <Image src="/images/cac-logo.jpg" alt="CAC Logo" fill className="object-cover" />
+                  </div>
+                )}
+              </div>
               <div className="w-16 h-px bg-white/50 mx-auto"></div>
             </div>
 
