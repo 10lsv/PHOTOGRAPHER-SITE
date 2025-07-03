@@ -174,17 +174,13 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-          <div className="w-8 h-8 border border-gray-500 rounded-full flex items-center justify-center hover:border-white transition-colors duration-300">
-            <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
+          
         </div>
       </section>
 
       {/* Photo Groups */}
       {Object.entries(photoGroups).map(([groupName, photos]) => (
-        <section key={groupName} className="py-20 px-6">
+        <section key={groupName} className="py-20 px-6 pt-0 mx-0">
           <div className="max-w-7xl mx-auto">
             {/* Group Title with Logo - Single Line Layout */}
             <div className="text-center mb-16">

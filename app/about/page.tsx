@@ -14,7 +14,7 @@ export default function About() {
             {/* Profile Picture Logo */}
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30">
               <Image
-                src="/images/profil-pic.jpg"
+                src="/images/PAUL-PROFIL-PIC.jpg"
                 alt="Paul Salvadori"
                 width={40}
                 height={40}
