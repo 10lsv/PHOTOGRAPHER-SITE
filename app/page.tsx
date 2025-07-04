@@ -32,8 +32,13 @@ const photoGroups = {
   AST: [
     { id: 10, src: "/images/tourla3.jpg", alt: "Architecture 1" },
     { id: 11, src: "/images/tourla13.webp", alt: "Architecture 2" },
-    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 2" },
+    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 3" },
   ],
+}
+
+const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const target = e.target as HTMLImageElement
+  target.src = "/placeholder.svg?height=400&width=300&text=Image+Not+Found"
 }
 
 const inspirationalQuotes = ["CAPTURER L'INSTANT", "FIGER L'ÉMOTION", "RÉVÉLER LA BEAUTÉ", "IMMORTALISER L'ACTION"]
@@ -146,6 +151,7 @@ export default function Home() {
                 width={40}
                 height={40}
                 className="w-full h-full object-cover"
+                onError={handleImageError}
               />
             </div>
             <nav className="flex space-x-6 sm:space-x-8 text-xs sm:text-sm">
@@ -194,7 +200,13 @@ export default function Home() {
                 onClick={() => document.getElementById("paysage-section")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
-                  <Image src="/images/paysage5.jpg" alt="Paysage Logo" fill className="object-cover" />
+                  <Image
+                    src="/images/paysage5.jpg"
+                    alt="Paysage Logo"
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                  />
                 </div>
               </div>
 
@@ -205,7 +217,13 @@ export default function Home() {
                 onClick={() => document.getElementById("ast-section")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
-                  <Image src="/images/ast-logo.jpg" alt="AST Logo" fill className="object-cover" />
+                  <Image
+                    src="/images/ast-logo.jpg"
+                    alt="AST Logo"
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                  />
                 </div>
               </div>
 
@@ -216,7 +234,13 @@ export default function Home() {
                 onClick={() => document.getElementById("fcca-section")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
-                  <Image src="/images/fcca-logo.jpg" alt="FCCA Logo" fill className="object-cover" />
+                  <Image
+                    src="/images/fcca-logo.jpg"
+                    alt="FCCA Logo"
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                  />
                 </div>
               </div>
 
@@ -227,7 +251,13 @@ export default function Home() {
                 onClick={() => document.getElementById("caen-athletic-section")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
-                  <Image src="/images/cac-logo.jpg" alt="CAC Logo" fill className="object-cover" />
+                  <Image
+                    src="/images/cac-logo.jpg"
+                    alt="CAC Logo"
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                  />
                 </div>
               </div>
             </div>
@@ -255,25 +285,49 @@ export default function Home() {
 
                 {groupName === "paysage" && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
-                    <Image src="/images/paysage5.jpg" alt="Paysage Logo" fill className="object-cover" />
+                    <Image
+                      src="/images/paysage5.jpg"
+                      alt="Paysage Logo"
+                      fill
+                      className="object-cover"
+                      onError={handleImageError}
+                    />
                   </div>
                 )}
 
                 {groupName === "fcca" && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
-                    <Image src="/images/fcca-logo.jpg" alt="FCCA Logo" fill className="object-cover" />
+                    <Image
+                      src="/images/fcca-logo.jpg"
+                      alt="FCCA Logo"
+                      fill
+                      className="object-cover"
+                      onError={handleImageError}
+                    />
                   </div>
                 )}
 
                 {groupName === "AST" && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
-                    <Image src="/images/ast-logo.jpg" alt="AST Logo" fill className="object-cover" />
+                    <Image
+                      src="/images/ast-logo.jpg"
+                      alt="AST Logo"
+                      fill
+                      className="object-cover"
+                      onError={handleImageError}
+                    />
                   </div>
                 )}
 
                 {groupName === "caen-athletic" && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
-                    <Image src="/images/cac-logo.jpg" alt="CAC Logo" fill className="object-cover" />
+                    <Image
+                      src="/images/cac-logo.jpg"
+                      alt="CAC Logo"
+                      fill
+                      className="object-cover"
+                      onError={handleImageError}
+                    />
                   </div>
                 )}
               </div>
@@ -305,6 +359,7 @@ export default function Home() {
                       alt={photo.alt}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      onError={handleImageError}
                     />
 
                     {/* Overlay Effects */}
@@ -390,6 +445,7 @@ export default function Home() {
                 alt={selectedPhoto.alt}
                 fill
                 className="object-contain"
+                onError={handleImageError}
               />
             </div>
           </div>
