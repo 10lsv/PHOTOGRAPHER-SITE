@@ -234,33 +234,25 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-            <div className="w-6 h-6 sm:w-8 sm:h-8 border border-gray-500 rounded-full flex items-center justify-center hover:border-white transition-colors duration-300">
-              <svg
-                className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Photo Groups */}
+      {/* Photo Grid Sections */}
       {Object.entries(photoGroups).map(([groupName, photos]) => (
-        <section key={groupName} id={`${groupName}-section`} className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            {/* Group Title with Logo - Mobile Optimized */}
-            <div className="text-center mb-12 sm:mb-16">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-thin tracking-wider text-white/90 text-center">
+        <section id={`${groupName}-section`} key={groupName} className="relative py-16 sm:py-20 px-4">
+          {/* Viewfinder Effect */}
+          {isViewfinderActive && (
+            <div className="absolute inset-0 bg-black pointer-events-none" style={{ mixBlendMode: "multiply" }}></div>
+          )}
+
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Section Title and Logo */}
+            <div className="mb-12">
+              <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-wider text-white/90 whitespace-nowrap">
                   {groupName === "caen-athletic" ? "CAEN ATHLETIC" : groupName.toUpperCase()}
                 </h2>
 
-                {/* Logos - Mobile Optimized */}
                 {groupName === "paysage" && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                     <Image src="/images/paysage5.jpg" alt="Paysage Logo" fill className="object-cover" />

@@ -14,7 +14,7 @@ export default function About() {
             {/* Profile Picture Logo */}
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30">
               <Image
-                src="/images/PAUL-PROFIL-PIC.jpg"
+                src="/images/profil-pic.jpg"
                 alt="Paul Salvadori"
                 width={40}
                 height={40}
@@ -55,8 +55,8 @@ export default function About() {
               <Image src="/images/PAUL-PROFIL-PIC.jpg" alt="Paul Salvadori en action" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-xl font-medium mb-2">En Action</h3>
-                <p className="text-sm text-gray-300">Sur la piste d'athlétisme</p>
+                
+                
               </div>
             </div>
 
@@ -65,8 +65,8 @@ export default function About() {
               <Image src="/images/PAUL-MAT-PIC.jpg" alt="Matériel photo de Paul" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-xl font-medium mb-2">Mon Matériel</h3>
-                <p className="text-sm text-gray-300">Lumix DC TZ90</p>
+                
+                
               </div>
             </div>
           </div>
@@ -83,32 +83,32 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-12 text-gray-300 font-light leading-relaxed">
             <div className="space-y-6 animate-slide-up">
-              <p>
+              <p className="italic">
                 Je m'appelle Paul Salvadori, je vais avoir 14 ans et je suis en 4ème au collège. Mes activités
                 extrascolaires incluent beaucoup de sport : je joue au handball en club à Cherbourg et au football avec
                 mes amis de temps en temps.
               </p>
-              <p>
+              <p className="italic">
                 J'ai une passion pour la photo depuis que je suis petit. J'adore prendre des photos et vidéos. Quand on
                 faisait des voyages avec mes parents, j'aimais bien les prendre en photo, même prendre en photo les gens
                 en général.
               </p>
-              <p>
+              <p className="italic">
                 Au fur et à mesure, mes parents ont vu que la photographie devenait ma passion. Il y a deux ans, ils
                 m'ont acheté mon premier appareil photo qui est un Lumix DC TZ90.
               </p>
             </div>
             <div className="space-y-6 animate-slide-up animation-delay-200">
-              <p>
+              <p className="italic">
                 C'est à ce moment-là que j'ai commencé, vers mai 2024, à prendre en photo le FCCA (équipe de foot de mon
                 grand frère) lors de tournois.
               </p>
-              <p>
+              <p className="italic">
                 Puis fin juillet 2024, j'ai décidé de me lancer à fond sur les réseaux. J'ai publié une vidéo par jour
                 pendant toutes les vacances jusqu'en septembre, puis j'ai repris en février. Je suis à fond sur TikTok
                 et Instagram surtout.
               </p>
-              <p>
+              <p className="italic">
                 Mon type de photo préféré : les photos de sport en préférence, mais j'aime bien aussi prendre en photo
                 les paysages ou autres pour changer.
               </p>
@@ -181,7 +181,7 @@ export default function About() {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <p>Atteindre 10 000 abonnés Instagram avant juillet</p>
+                  <p>Atteindre 10 000 abonnés Instagram </p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
