@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Instagram } from "lucide-react"
+import { Instagram, X } from "lucide-react"
 
 const getGroupFromFilename = (filename: string) => {
   const name = filename.split("/").pop() || ""
@@ -14,25 +14,60 @@ const getGroupFromFilename = (filename: string) => {
 }
 
 const photoGroups = {
-  paysage: [
-    { id: 1, src: "/images/paysage18.jpg", alt: "Paysage 1" },
-    { id: 2, src: "/images/paysage8.jpg", alt: "Paysage 2" },
-    { id: 3, src: "/images/paysage17.jpg", alt: "Paysage 3" },
-  ],
-  fcca: [
-    { id: 4, src: "/images/fcca6.jpg", alt: "Portrait 1" },
-    { id: 5, src: "/images/fcca24.jpg", alt: "Portrait 2" },
-    { id: 6, src: "/images/fcca10.jpg", alt: "Portrait 3" },
-  ],
   "caen-athletic": [
-    { id: 7, src: "/images/athle15.jpg", alt: "Lifestyle 1" },
-    { id: 8, src: "/images/athle3.jpg", alt: "Lifestyle 2" },
-    { id: 9, src: "/images/athle14.jpg", alt: "Lifestyle 3" },
+    { id: 1, src: "/images/athle15.jpg", alt: "Caen Athletic 1" },
+    { id: 2, src: "/images/athle3.jpg", alt: "Caen Athletic 2" },
+    { id: 3, src: "/images/athle14.jpg", alt: "Caen Athletic 3" },
+    { id: 4, src: "/images/athle5.jpg", alt: "Caen Athletic 4" },
+    { id: 5, src: "/images/athle7.jpg", alt: "Caen Athletic 5" },
+    { id: 6, src: "/images/athle8.jpg", alt: "Caen Athletic 6" },
+    { id: 7, src: "/images/athle9.jpg", alt: "Caen Athletic 7" },
+    { id: 8, src: "/images/athle10.jpg", alt: "Caen Athletic 8" },
+    { id: 9, src: "/images/athle11.jpg", alt: "Caen Athletic 9" },
   ],
   AST: [
-    { id: 10, src: "/images/tourla3.jpg", alt: "Architecture 1" },
-    { id: 11, src: "/images/tourla13.webp", alt: "Architecture 2" },
-    { id: 12, src: "/images/tourla9.jpg", alt: "Architecture 3" },
+    { id: 1, src: "/images/tourla22.jpeg", alt: "AST 1" },
+    { id: 2, src: "/images/tourla13.webp", alt: "AST 2" },
+    { id: 3, src: "/images/tourla9.jpg", alt: "AST 3" },
+    { id: 4, src: "/images/tourla3.jpg", alt: "AST 4" },
+    { id: 5, src: "/images/tourla1.jpg", alt: "AST 5" },
+    { id: 6, src: "/images/tourla2.jpg", alt: "AST 6" },
+    { id: 7, src: "/images/tourla4.jpg", alt: "AST 7" },
+    { id: 8, src: "/images/tourla5.jpg", alt: "AST 8" },
+    { id: 9, src: "/images/tourla6.jpg", alt: "AST 9" },
+  ],
+  streetlife: [
+    { id: 1, src: "/images/paysage15.jpg", alt: "Street Life 1" },
+    { id: 2, src: "/images/paysage9.jpg", alt: "Street Life 2" },
+    { id: 3, src: "/images/paysage17.jpg", alt: "Street Life 3" },
+    { id: 4, src: "/images/paysage10.jpg", alt: "Street Life 4" },
+    { id: 5, src: "/images/paysage11.jpg", alt: "Street Life 5" },
+    { id: 6, src: "/images/paysage12.jpg", alt: "Street Life 6" },
+    { id: 7, src: "/images/paysage13.jpg", alt: "Street Life 7" },
+    { id: 8, src: "/images/paysage14.jpg", alt: "Street Life 8" },
+    { id: 9, src: "/images/paysage16.jpg", alt: "Street Life 9" },
+  ],
+  fcca: [
+    { id: 1, src: "/images/fcca6.jpg", alt: "FCCA 1" },
+    { id: 2, src: "/images/fcca24.jpg", alt: "FCCA 2" },
+    { id: 3, src: "/images/fcca10.jpg", alt: "FCCA 3" },
+    { id: 4, src: "/images/fcca7.jpg", alt: "FCCA 4" },
+    { id: 5, src: "/images/fcca8.jpg", alt: "FCCA 5" },
+    { id: 6, src: "/images/fcca9.jpg", alt: "FCCA 6" },
+    { id: 7, src: "/images/fcca11.jpg", alt: "FCCA 7" },
+    { id: 8, src: "/images/fcca12.jpg", alt: "FCCA 8" },
+    { id: 9, src: "/images/fcca13.jpg", alt: "FCCA 9" },
+  ],
+  paysage: [
+    { id: 1, src: "/images/paysage8.jpg", alt: "Paysage 1" },
+    { id: 2, src: "/images/paysage5.jpg", alt: "Paysage 2" },
+    { id: 3, src: "/images/paysage2.jpg", alt: "Paysage 3" },
+    { id: 4, src: "/images/paysage18.jpg", alt: "Paysage 4" },
+    { id: 5, src: "/images/paysage17.jpg", alt: "Paysage 5" },
+    { id: 6, src: "/images/paysage1.jpg", alt: "Paysage 6" },
+    { id: 7, src: "/images/paysage3.jpg", alt: "Paysage 7" },
+    { id: 8, src: "/images/paysage6.jpg", alt: "Paysage 8" },
+    { id: 9, src: "/images/paysage7.jpg", alt: "Paysage 9" },
   ],
 }
 
@@ -51,6 +86,9 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean[] }>({})
   const [currentQuote, setCurrentQuote] = useState(0)
   const [isViewfinderActive, setIsViewfinderActive] = useState(false)
+  const [selectedGallery, setSelectedGallery] = useState<string | null>(null)
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+  const [isGalleryAnimating, setIsGalleryAnimating] = useState(false)
   const groupRefs = useRef<{ [key: string]: (HTMLDivElement | null)[] }>({})
 
   useEffect(() => {
@@ -120,6 +158,34 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleViewfinderScroll)
   }, [])
 
+  const openGallery = (groupName: string) => {
+    setIsGalleryAnimating(true)
+    setSelectedGallery(groupName)
+    setCurrentPhotoIndex(0)
+  }
+
+  const closeGallery = () => {
+    setIsGalleryAnimating(false)
+    setTimeout(() => {
+      setSelectedGallery(null)
+      setCurrentPhotoIndex(0)
+    }, 300)
+  }
+
+  const nextPhoto = () => {
+    if (selectedGallery) {
+      const photos = photoGroups[selectedGallery as keyof typeof photoGroups]
+      setCurrentPhotoIndex((prev) => (prev + 1) % photos.length)
+    }
+  }
+
+  const prevPhoto = () => {
+    if (selectedGallery) {
+      const photos = photoGroups[selectedGallery as keyof typeof photoGroups]
+      setCurrentPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length)
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden mobile-loader">
@@ -141,7 +207,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Header */}
       <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-40 border-b border-gray-800 animate-slide-down">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3">
           <div className="flex justify-between items-center">
             {/* Profile Picture Logo */}
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-white/30">
@@ -166,39 +232,34 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-16 sm:pt-20 pb-8 sm:pb-12 px-4 min-h-screen flex flex-col items-center justify-center">
+      {/* Hero Section - Hauteur réduite pour montrer le contenu suivant */}
+      <section className="relative pt-12 pb-0 px-4 h-[85vh] sm:h-[80vh] flex flex-col items-center justify-center">
         <div className="text-center max-w-4xl mx-auto relative">
-          {/* Main Title - Optimized for mobile */}
-          <div className="relative mb-6 sm:mb-8">
-            {/* PAUL */}
-            <h1 className="text-[14vw] sm:text-[12vw] md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.85] animate-fade-in-up">
-              PAUL
-            </h1>
-
-            {/* SALVADORI */}
-            <h1 className="text-[14vw] sm:text-[12vw] md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.85] mt-1 animate-fade-in-up animation-delay-200">
-              SALVADORI
+          {/* Main Title - Single line on mobile */}
+          <div className="relative mb-4 sm:mb-6">
+            {/* PAUL SALVADORI - Single line on mobile */}
+            <h1 className="text-[10vw] sm:text-[11vw] md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.85] animate-fade-in-up whitespace-nowrap">
+              PAUL SALVADORI
             </h1>
           </div>
 
           {/* Decorative Line */}
-          <div className="w-16 sm:w-24 md:w-32 h-px bg-white mb-4 sm:mb-6 mx-auto animate-expand-line animation-delay-500"></div>
+          <div className="w-12 sm:w-20 md:w-24 h-px bg-white mb-3 sm:mb-4 mx-auto animate-expand-line animation-delay-500"></div>
 
           {/* Location */}
-          <p className="text-xs sm:text-sm md:text-lg text-gray-300 font-light tracking-[0.2em] sm:tracking-[0.3em] animate-fade-in-up animation-delay-800 mb-8 sm:mb-12">
+          <p className="text-xs sm:text-sm md:text-base text-gray-300 font-light tracking-[0.2em] sm:tracking-[0.3em] animate-fade-in-up animation-delay-800 mb-4 sm:mb-6">
             CHERBOURG, FRANCE
           </p>
 
-          {/* Navigation Cards Section - Mobile Optimized */}
-          <div className="flex justify-center mb-8 sm:mb-16 animate-photo-reveal animation-delay-1000">
-            <div className="mobile-navigation-grid">
+          {/* Navigation Cards Section - Taille réduite */}
+          <div className="flex justify-center animate-photo-reveal animation-delay-1000">
+            <div className="mobile-horizontal-cards-container sm:desktop-cards-container">
               <div
+                className="mobile-horizontal-card sm:desktop-glass-card"
                 data-text="PAYSAGE"
-                className="mobile-glass-card"
-                onClick={() => document.getElementById("paysage-section")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => openGallery("paysage")}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                   <Image
                     src="/images/paysage5.jpg"
                     alt="Paysage Logo"
@@ -207,14 +268,32 @@ export default function Home() {
                     onError={handleImageError}
                   />
                 </div>
+                <span className="text-white text-xs font-semibold tracking-wider sm:hidden">PAYSAGE</span>
               </div>
 
               <div
-                data-text="AST"
-                className="mobile-glass-card"
-                onClick={() => document.getElementById("ast-section")?.scrollIntoView({ behavior: "smooth" })}
+                className="mobile-horizontal-card sm:desktop-glass-card"
+                data-text="STREETLIFE"
+                onClick={() => openGallery("streetlife")}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                  <Image
+                    src="/images/paysage4.jpg"
+                    alt="Streetlife Logo"
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                  />
+                </div>
+                <span className="text-white text-xs font-semibold tracking-wider sm:hidden">STREETLIFE</span>
+              </div>
+
+              <div
+                className="mobile-horizontal-card sm:desktop-glass-card"
+                data-text="AST"
+                onClick={() => openGallery("AST")}
+              >
+                <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                   <Image
                     src="/images/ast-logo.jpg"
                     alt="AST Logo"
@@ -223,14 +302,15 @@ export default function Home() {
                     onError={handleImageError}
                   />
                 </div>
+                <span className="text-white text-xs font-semibold tracking-wider sm:hidden">AST</span>
               </div>
 
               <div
+                className="mobile-horizontal-card sm:desktop-glass-card"
                 data-text="FCCA"
-                className="mobile-glass-card"
-                onClick={() => document.getElementById("fcca-section")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => openGallery("fcca")}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                   <Image
                     src="/images/fcca-logo.jpg"
                     alt="FCCA Logo"
@@ -239,14 +319,15 @@ export default function Home() {
                     onError={handleImageError}
                   />
                 </div>
+                <span className="text-white text-xs font-semibold tracking-wider sm:hidden">FCCA</span>
               </div>
 
               <div
+                className="mobile-horizontal-card sm:desktop-glass-card"
                 data-text="CAEN ATHLETIC"
-                className="mobile-glass-card"
-                onClick={() => document.getElementById("caen-athletic-section")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => openGallery("caen-athletic")}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                   <Image
                     src="/images/cac-logo.jpg"
                     alt="CAC Logo"
@@ -255,15 +336,16 @@ export default function Home() {
                     onError={handleImageError}
                   />
                 </div>
+                <span className="text-white text-xs font-semibold tracking-wider sm:hidden">CAEN ATHLETIC</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Photo Grid Sections */}
+      {/* Photo Grid Sections - Espacement minimal */}
       {Object.entries(photoGroups).map(([groupName, photos]) => (
-        <section id={`${groupName}-section`} key={groupName} className="relative py-16 sm:py-20 px-4">
+        <section id={`${groupName}-section`} key={groupName} className="relative py-1 sm:py-8 px-4">
           {/* Viewfinder Effect */}
           {isViewfinderActive && (
             <div className="absolute inset-0 bg-black pointer-events-none" style={{ mixBlendMode: "multiply" }}></div>
@@ -271,14 +353,14 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto text-center">
             {/* Section Title and Logo */}
-            <div className="mb-12">
-              <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-wider text-white/90 whitespace-nowrap">
+            <div className="mb-8 sm:mb-10">
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4 flex-wrap">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-thin tracking-wider text-white/90 whitespace-nowrap">
                   {groupName === "caen-athletic" ? "CAEN ATHLETIC" : groupName.toUpperCase()}
                 </h2>
 
                 {groupName === "paysage" && (
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                     <Image
                       src="/images/paysage5.jpg"
                       alt="Paysage Logo"
@@ -289,8 +371,20 @@ export default function Home() {
                   </div>
                 )}
 
+                {groupName === "streetlife" && (
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                    <Image
+                      src="/images/paysage4.jpg"
+                      alt="Streetlife Logo"
+                      fill
+                      className="object-cover"
+                      onError={handleImageError}
+                    />
+                  </div>
+                )}
+
                 {groupName === "fcca" && (
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                     <Image
                       src="/images/fcca-logo.jpg"
                       alt="FCCA Logo"
@@ -302,7 +396,7 @@ export default function Home() {
                 )}
 
                 {groupName === "AST" && (
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                     <Image
                       src="/images/ast-logo.jpg"
                       alt="AST Logo"
@@ -314,7 +408,7 @@ export default function Home() {
                 )}
 
                 {groupName === "caen-athletic" && (
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white flex-shrink-0">
                     <Image
                       src="/images/cac-logo.jpg"
                       alt="CAC Logo"
@@ -325,12 +419,12 @@ export default function Home() {
                   </div>
                 )}
               </div>
-              <div className="w-12 sm:w-16 h-px bg-white/50 mx-auto"></div>
+              <div className="w-8 sm:w-12 h-px bg-white/50 mx-auto"></div>
             </div>
 
             {/* Photo Grid - Mobile First */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
-              {photos.map((photo, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              {photos.slice(0, 3).map((photo, index) => (
                 <div
                   key={photo.id}
                   ref={(el) => {
@@ -380,7 +474,7 @@ export default function Home() {
       ))}
 
       {/* Social Links */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 border-t border-gray-800">
+      <section className="px-4 sm:px-6 py-12 sm:py-16 border-t border-gray-800">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center space-x-8 sm:space-x-12">
             <a
@@ -412,13 +506,64 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 sm:px-6 py-6 sm:py-8 border-t border-gray-800">
+      <footer className="px-4 sm:px-6 py-4 sm:py-6 border-t border-gray-800">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-xs text-gray-500 font-light animate-fade-in">
             © 2025 Paul Salvadori. All rights reserved. Made By Léo Sauvey
           </p>
         </div>
       </footer>
+
+      {/* Gallery Modal with Simple Professional Animation */}
+      {selectedGallery && (
+        <div
+          className={`fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 ${isGalleryAnimating ? "animate-simple-fade-in" : "animate-simple-fade-out"}`}
+        >
+          <div className="relative w-full max-w-6xl h-full max-h-[90vh]">
+            {/* Close Button */}
+            <button
+              onClick={closeGallery}
+              className="absolute top-4 right-4 z-10 text-white text-2xl hover:text-gray-300 transition-all duration-300 hover:scale-110 transform w-10 h-10 flex items-center justify-center bg-black/50 rounded-full backdrop-blur-sm"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Gallery Grid with Simple Animation */}
+            <div className="w-full h-full overflow-y-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 p-4">
+                {photoGroups[selectedGallery as keyof typeof photoGroups].map((photo, index) => (
+                  <div
+                    key={photo.id}
+                    className={`relative aspect-square overflow-hidden rounded-lg cursor-pointer group ${isGalleryAnimating ? "animate-simple-slide-up" : ""}`}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                    }}
+                    onClick={() => setSelectedPhoto(photo)}
+                  >
+                    <Image
+                      src={photo.src || "/placeholder.svg"}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={handleImageError}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Gallery Title with Simple Animation */}
+            <div className="absolute top-4 left-4 z-10">
+              <h3
+                className={`text-white text-lg sm:text-xl font-bold bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm ${isGalleryAnimating ? "animate-simple-slide-right" : ""}`}
+              >
+                {selectedGallery === "caen-athletic" ? "CAEN ATHLETIC" : selectedGallery.toUpperCase()}
+              </h3>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Photo Modal - Mobile Optimized */}
       {selectedPhoto && (
