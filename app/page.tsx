@@ -7,12 +7,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Instagram, X } from "lucide-react"
 
-const getGroupFromFilename = (filename: string) => {
-  const name = filename.split("/").pop() || ""
-  const firstWord = name.split(/[-_\s]/)[0].toLowerCase()
-  return firstWord
-}
-
 const photoGroups = {
   "caen-athletic": [
     { id: 1, src: "/images/athle15.jpg", alt: "Caen Athletic 1" },
@@ -60,8 +54,8 @@ const photoGroups = {
   ],
   paysage: [
     { id: 1, src: "/images/paysage8.jpg", alt: "Paysage 1" },
-    { id: 2, src: "/images/paysage5.jpg", alt: "Paysage 2" },
-    { id: 3, src: "/images/paysage2.jpg", alt: "Paysage 3" },
+    { id: 2, src: "/images/paysage2.jpg", alt: "Paysage 2" },
+    { id: 3, src: "/images/paysage5.jpg", alt: "Paysage 3" },
     { id: 4, src: "/images/paysage18.jpg", alt: "Paysage 4" },
     { id: 5, src: "/images/paysage17.jpg", alt: "Paysage 5" },
     { id: 6, src: "/images/paysage1.jpg", alt: "Paysage 6" },
@@ -76,18 +70,11 @@ const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   target.src = "/placeholder.svg?height=400&width=300&text=Image+Not+Found"
 }
 
-const inspirationalQuotes = ["CAPTURER L'INSTANT", "FIGER L'ÉMOTION", "RÉVÉLER LA BEAUTÉ", "IMMORTALISER L'ACTION"]
-
 export default function Home() {
   const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; alt: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [activeGroup, setActiveGroup] = useState<string>("caen-athletic")
-  const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean[] }>({})
-  const [currentQuote, setCurrentQuote] = useState(0)
-  const [isViewfinderActive, setIsViewfinderActive] = useState(false)
   const [selectedGallery, setSelectedGallery] = useState<string | null>(null)
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const [isGalleryAnimating, setIsGalleryAnimating] = useState(false)
   const groupRefs = useRef<{ [key: string]: (HTMLDivElement | null)[] }>({})
 
@@ -116,8 +103,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-
       Object.keys(groupRefs.current).forEach((group) => {
         groupRefs.current[group].forEach((ref, index) => {
           if (ref) {
@@ -138,52 +123,16 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Quote rotation effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentQuote((prev) => (prev + 1) % inspirationalQuotes.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  // Viewfinder activation on scroll
-  useEffect(() => {
-    const handleViewfinderScroll = () => {
-      const scrollPosition = window.scrollY
-      const windowHeight = window.innerHeight
-      setIsViewfinderActive(scrollPosition > windowHeight * 0.3 && scrollPosition < windowHeight * 1.2)
-    }
-
-    window.addEventListener("scroll", handleViewfinderScroll)
-    return () => window.removeEventListener("scroll", handleViewfinderScroll)
-  }, [])
-
   const openGallery = (groupName: string) => {
     setIsGalleryAnimating(true)
     setSelectedGallery(groupName)
-    setCurrentPhotoIndex(0)
   }
 
   const closeGallery = () => {
     setIsGalleryAnimating(false)
     setTimeout(() => {
       setSelectedGallery(null)
-      setCurrentPhotoIndex(0)
     }, 300)
-  }
-
-  const nextPhoto = () => {
-    if (selectedGallery) {
-      const photos = photoGroups[selectedGallery as keyof typeof photoGroups]
-      setCurrentPhotoIndex((prev) => (prev + 1) % photos.length)
-    }
-  }
-
-  const prevPhoto = () => {
-    if (selectedGallery) {
-      const photos = photoGroups[selectedGallery as keyof typeof photoGroups]
-      setCurrentPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length)
-    }
   }
 
   if (isLoading) {
@@ -232,12 +181,11 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section - Hauteur réduite pour montrer le contenu suivant */}
+      {/* Hero Section */}
       <section className="relative pb-0 px-4 h-auto min-h-[60vh] sm:h-[80vh] flex flex-col items-center justify-center my-0 sm:my-11 pt-20 sm:pt-16">
         <div className="text-center max-w-4xl mx-auto relative my-0 sm:my-11">
-          {/* Main Title - Single line on mobile */}
+          {/* Main Title */}
           <div className="relative mb-4 sm:mb-6">
-            {/* PAUL SALVADORI - Single line on mobile */}
             <h1 className="text-[10vw] sm:text-[11vw] md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.85] animate-fade-in-up whitespace-nowrap">
               PAUL SALVADORI
             </h1>
@@ -251,7 +199,7 @@ export default function Home() {
             CHERBOURG, FRANCE
           </p>
 
-          {/* Navigation Cards Section - Taille réduite */}
+          {/* Navigation Cards Section */}
           <div className="flex justify-center animate-photo-reveal animation-delay-1000">
             <div className="mobile-horizontal-cards-container sm:desktop-cards-container">
               <div
@@ -343,14 +291,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Photo Grid Sections - Espacement minimal */}
+      {/* Photo Grid Sections */}
       {Object.entries(photoGroups).map(([groupName, photos]) => (
         <section id={`${groupName}-section`} key={groupName} className="relative py-1 sm:py-8 px-4">
-          {/* Viewfinder Effect */}
-          {isViewfinderActive && (
-            <div className="absolute inset-0 bg-black pointer-events-none" style={{ mixBlendMode: "multiply" }}></div>
-          )}
-
           <div className="max-w-6xl mx-auto text-center">
             {/* Section Title and Logo */}
             <div className="mb-8 sm:mb-10 mt-14">
@@ -422,7 +365,7 @@ export default function Home() {
               <div className="w-8 sm:w-12 h-px bg-white/50 mx-auto"></div>
             </div>
 
-            {/* Photo Grid - Mobile First */}
+            {/* Photo Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {photos.slice(0, 3).map((photo, index) => (
                 <div
@@ -514,7 +457,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Gallery Modal with Simple Professional Animation */}
+      {/* Gallery Modal */}
       {selectedGallery && (
         <div
           className={`fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 ${isGalleryAnimating ? "animate-simple-fade-in" : "animate-simple-fade-out"}`}
@@ -528,7 +471,7 @@ export default function Home() {
               <X className="w-6 h-6" />
             </button>
 
-            {/* Gallery Grid with Simple Animation */}
+            {/* Gallery Grid */}
             <div className="w-full h-full overflow-y-auto">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 p-4">
                 {photoGroups[selectedGallery as keyof typeof photoGroups].map((photo, index) => (
@@ -553,7 +496,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Gallery Title with Simple Animation */}
+            {/* Gallery Title */}
             <div className="absolute top-4 left-4 z-10">
               <h3
                 className={`text-white text-lg sm:text-xl font-bold bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm ${isGalleryAnimating ? "animate-simple-slide-right" : ""}`}
@@ -565,7 +508,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Photo Modal - Mobile Optimized */}
+      {/* Photo Modal */}
       {selectedPhoto && (
         <div
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 sm:p-6 animate-modal-in"
