@@ -233,8 +233,8 @@ export default function Home() {
       </header>
 
       {/* Hero Section - Hauteur réduite pour montrer le contenu suivant */}
-      <section className="relative pt-12 pb-0 px-4 h-[85vh] sm:h-[80vh] flex flex-col items-center justify-center">
-        <div className="text-center max-w-4xl mx-auto relative">
+      <section className="relative pb-0 px-4 h-auto min-h-[60vh] sm:h-[80vh] flex flex-col items-center justify-center my-0 sm:my-11 pt-20 sm:pt-16">
+        <div className="text-center max-w-4xl mx-auto relative my-0 sm:my-11">
           {/* Main Title - Single line on mobile */}
           <div className="relative mb-4 sm:mb-6">
             {/* PAUL SALVADORI - Single line on mobile */}
@@ -353,7 +353,7 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto text-center">
             {/* Section Title and Logo */}
-            <div className="mb-8 sm:mb-10">
+            <div className="mb-8 sm:mb-10 mt-14">
               <div className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4 flex-wrap">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-thin tracking-wider text-white/90 whitespace-nowrap">
                   {groupName === "caen-athletic" ? "CAEN ATHLETIC" : groupName.toUpperCase()}
