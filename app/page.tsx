@@ -26,7 +26,7 @@ const photoGroups = {
   ],
   "caen-athletic": [
     { id: 7, src: "/images/athle15.jpg", alt: "Lifestyle 1" },
-    { id: 8, src: "/images/athle5.jpg", alt: "Lifestyle 2" },
+    { id: 8, src: "/images/athle3.jpg", alt: "Lifestyle 2" },
     { id: 9, src: "/images/athle14.jpg", alt: "Lifestyle 3" },
   ],
   AST: [

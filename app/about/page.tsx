@@ -181,8 +181,7 @@ export default function About() {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <p>Atteindre 10 000 abonnés Instagram </p>
-                </div>
+                  <p>Atteindre 25 000 abonnés Instagram            </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                   <p>Continuer à développer ma passion photographique</p>
