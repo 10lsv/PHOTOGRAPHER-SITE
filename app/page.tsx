@@ -169,15 +169,15 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-16 sm:pt-20 pb-8 sm:pb-12 px-4 min-h-screen flex flex-col items-center justify-center">
         <div className="text-center max-w-4xl mx-auto relative">
-          {/* Main Title */}
-          <div className="relative mb-4">
+          {/* Main Title - Optimized for mobile */}
+          <div className="relative mb-6 sm:mb-8">
             {/* PAUL */}
-            <h1 className="text-[18vw] sm:text-[15vw] md:text-8xl lg:text-9xl font-black tracking-tight leading-none animate-fade-in-up">
+            <h1 className="text-[14vw] sm:text-[12vw] md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.85] animate-fade-in-up">
               PAUL
             </h1>
 
             {/* SALVADORI */}
-            <h1 className="text-[18vw] sm:text-[15vw] md:text-8xl lg:text-9xl font-black tracking-tight leading-none mt-1 sm:mt-2 animate-fade-in-up animation-delay-200">
+            <h1 className="text-[14vw] sm:text-[12vw] md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.85] mt-1 animate-fade-in-up animation-delay-200">
               SALVADORI
             </h1>
           </div>
@@ -186,20 +186,19 @@ export default function Home() {
           <div className="w-16 sm:w-24 md:w-32 h-px bg-white mb-4 sm:mb-6 mx-auto animate-expand-line animation-delay-500"></div>
 
           {/* Location */}
-          <p className="text-sm sm:text-base md:text-xl text-gray-300 font-light tracking-[0.2em] sm:tracking-[0.3em] animate-fade-in-up animation-delay-800 mb-8 sm:mb-12">
+          <p className="text-xs sm:text-sm md:text-lg text-gray-300 font-light tracking-[0.2em] sm:tracking-[0.3em] animate-fade-in-up animation-delay-800 mb-8 sm:mb-12">
             CHERBOURG, FRANCE
           </p>
 
-          {/* Navigation Cards Section - Mobile First */}
-          <div className="flex justify-center mb-12 sm:mb-16 animate-photo-reveal animation-delay-1000">
-            <div className="navigation-container">
+          {/* Navigation Cards Section - Mobile Optimized */}
+          <div className="flex justify-center mb-8 sm:mb-16 animate-photo-reveal animation-delay-1000">
+            <div className="mobile-navigation-grid">
               <div
                 data-text="PAYSAGE"
-                style={{ "--r": -15 } as React.CSSProperties}
-                className="glass-card"
+                className="mobile-glass-card"
                 onClick={() => document.getElementById("paysage-section")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
                   <Image
                     src="/images/paysage5.jpg"
                     alt="Paysage Logo"
@@ -212,11 +211,10 @@ export default function Home() {
 
               <div
                 data-text="AST"
-                style={{ "--r": 5 } as React.CSSProperties}
-                className="glass-card"
+                className="mobile-glass-card"
                 onClick={() => document.getElementById("ast-section")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
                   <Image
                     src="/images/ast-logo.jpg"
                     alt="AST Logo"
@@ -229,11 +227,10 @@ export default function Home() {
 
               <div
                 data-text="FCCA"
-                style={{ "--r": 25 } as React.CSSProperties}
-                className="glass-card"
+                className="mobile-glass-card"
                 onClick={() => document.getElementById("fcca-section")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
                   <Image
                     src="/images/fcca-logo.jpg"
                     alt="FCCA Logo"
@@ -246,11 +243,10 @@ export default function Home() {
 
               <div
                 data-text="CAEN ATHLETIC"
-                style={{ "--r": -5 } as React.CSSProperties}
-                className="glass-card"
+                className="mobile-glass-card"
                 onClick={() => document.getElementById("caen-athletic-section")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-white/20 bg-white">
                   <Image
                     src="/images/cac-logo.jpg"
                     alt="CAC Logo"
@@ -262,8 +258,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* Scroll Indicator */}
         </div>
       </section>
 

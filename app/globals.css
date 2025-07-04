@@ -33,103 +33,105 @@
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   }
 
-  /* Navigation Cards Glass Effect - Mobile First */
-  .navigation-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* Mobile Navigation Grid - Optimized for mobile */
+  .mobile-navigation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 280px;
+    margin: 0 auto;
     padding: 1rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
 
-  .navigation-container .glass-card {
+  .mobile-glass-card {
     position: relative;
-    width: 140px;
-    height: 160px;
-    background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    width: 120px;
+    height: 140px;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.5s ease;
-    border-radius: 10px;
+    transition: all 0.4s ease;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
     cursor: pointer;
-    transform: rotate(calc(var(--r) * 1deg));
-    margin: 0 -20px;
+    transform: scale(0.95);
   }
 
-  /* Mobile animations preserved */
-  .navigation-container .glass-card:hover,
-  .navigation-container .glass-card:active {
-    transform: rotate(0deg) scale(1.05);
-    margin: 0 5px;
-    background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-    box-shadow: 0 25px 35px rgba(0, 0, 0, 0.35);
+  .mobile-glass-card:hover,
+  .mobile-glass-card:active {
+    transform: scale(1);
+    background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   /* Touch-friendly for mobile */
   @media (hover: none) and (pointer: coarse) {
-    .navigation-container .glass-card:active {
-      transform: rotate(0deg) scale(1.05);
-      margin: 0 5px;
-      background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-      box-shadow: 0 25px 35px rgba(0, 0, 0, 0.35);
+    .mobile-glass-card:active {
+      transform: scale(1);
+      background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
   }
 
-  .navigation-container .glass-card::before {
+  .mobile-glass-card::before {
     content: attr(data-text);
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.05);
+    height: 32px;
+    background: rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.1em;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 12px 12px;
+    text-transform: uppercase;
   }
 
-  /* Tablet and Desktop */
+  /* Tablet and Desktop - Keep original navigation */
   @media (min-width: 768px) {
-    .navigation-container {
+    .mobile-navigation-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 2rem;
       gap: 0;
+      max-width: none;
     }
 
-    .navigation-container .glass-card {
+    .mobile-glass-card {
       width: 160px;
       height: 180px;
       margin: 0 -35px;
+      transform: rotate(calc(var(--r, 0) * 1deg));
     }
 
-    .navigation-container:hover .glass-card {
+    .mobile-navigation-grid:hover .mobile-glass-card {
       transform: rotate(0deg);
       margin: 0 8px;
     }
 
-    .navigation-container .glass-card::before {
+    .mobile-glass-card::before {
       height: 40px;
       font-size: 0.8rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .navigation-container .glass-card {
+    .mobile-glass-card {
       width: 180px;
       height: 200px;
       margin: 0 -45px;
     }
 
-    .navigation-container:hover .glass-card {
+    .mobile-navigation-grid:hover .mobile-glass-card {
       margin: 0 10px;
     }
   }
@@ -488,7 +490,7 @@
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .bold-letters {
-    font-size: 18vw;
+    font-size: 14vw;
     line-height: 0.85;
   }
 }
@@ -496,8 +498,8 @@
 /* Enhanced mobile responsiveness */
 @media (max-width: 640px) {
   .bold-letters {
-    font-size: 18vw;
-    line-height: 0.9;
+    font-size: 14vw;
+    line-height: 0.85;
   }
 
   /* Ensure profile pic scales properly on very small screens */
@@ -513,7 +515,7 @@
 
 @media (max-width: 480px) {
   .bold-letters {
-    font-size: 20vw;
+    font-size: 14vw;
   }
 }
 
