@@ -77,6 +77,7 @@ export default function Home() {
   const [selectedGallery, setSelectedGallery] = useState<string | null>(null)
   const [isGalleryAnimating, setIsGalleryAnimating] = useState(false)
   const groupRefs = useRef<{ [key: string]: (HTMLDivElement | null)[] }>({})
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const initialVisibility: { [key: string]: boolean[] } = {}
@@ -99,6 +100,17 @@ export default function Home() {
       }, 1000)
     }, 3500)
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkIsMobile()
+    window.addEventListener("resize", checkIsMobile)
+
+    return () => window.removeEventListener("resize", checkIsMobile)
   }, [])
 
   useEffect(() => {
@@ -366,7 +378,7 @@ export default function Home() {
             </div>
 
             {/* Photo Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-6 md:gap-8">
               {photos.slice(0, 3).map((photo, index) => (
                 <div
                   key={photo.id}
@@ -466,38 +478,40 @@ export default function Home() {
             {/* Close Button */}
             <button
               onClick={closeGallery}
-              className="absolute top-4 right-4 z-10 text-white text-2xl hover:text-gray-300 transition-all duration-300 hover:scale-110 transform w-10 h-10 flex items-center justify-center bg-black/50 rounded-full backdrop-blur-sm"
+              className="absolute top-6 right-6 z-10 text-white text-2xl hover:text-gray-300 transition-all duration-300 hover:scale-110 transform w-12 h-12 flex items-center justify-center bg-black/50 rounded-full backdrop-blur-sm"
             >
               <X className="w-6 h-6" />
             </button>
 
             {/* Gallery Grid */}
-            <div className="w-full h-full overflow-y-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 p-4">
-                {photoGroups[selectedGallery as keyof typeof photoGroups].map((photo, index) => (
-                  <div
-                    key={photo.id}
-                    className={`relative aspect-square overflow-hidden rounded-lg cursor-pointer group ${isGalleryAnimating ? "animate-simple-slide-up" : ""}`}
-                    style={{
-                      animationDelay: `${index * 50}ms`,
-                    }}
-                    onClick={() => setSelectedPhoto(photo)}
-                  >
-                    <Image
-                      src={photo.src || "/placeholder.svg"}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      onError={handleImageError}
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                  </div>
-                ))}
+            <div className="w-full h-full overflow-y-auto pt-16">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 p-4 pb-8">
+                {photoGroups[selectedGallery as keyof typeof photoGroups]
+                  .slice(0, isMobile ? 8 : photoGroups[selectedGallery as keyof typeof photoGroups].length)
+                  .map((photo, index) => (
+                    <div
+                      key={photo.id}
+                      className={`relative aspect-square overflow-hidden rounded-lg cursor-pointer group ${isGalleryAnimating ? "animate-simple-slide-up" : ""}`}
+                      style={{
+                        animationDelay: `${index * 50}ms`,
+                      }}
+                      onClick={() => setSelectedPhoto(photo)}
+                    >
+                      <Image
+                        src={photo.src || "/placeholder.svg"}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={handleImageError}
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                    </div>
+                  ))}
               </div>
             </div>
 
             {/* Gallery Title */}
-            <div className="absolute top-4 left-4 z-10">
+            <div className="absolute top-6 left-6 z-10">
               <h3
                 className={`text-white text-lg sm:text-xl font-bold bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm ${isGalleryAnimating ? "animate-simple-slide-right" : ""}`}
               >
