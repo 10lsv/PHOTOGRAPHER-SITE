@@ -46,7 +46,7 @@ const photoGroups = {
     { id: 2, src: "/images/fcca24.jpg", alt: "FCCA 2" },
     { id: 3, src: "/images/fcca10.jpg", alt: "FCCA 3" },
     { id: 4, src: "/images/fcca14.jpg", alt: "FCCA 4" },
-    { id: 5, src: "/images/fcca6.jpg", alt: "FCCA 5" },
+    { id: 5, src: "/images/fcca13.jpg", alt: "FCCA 5" },
     { id: 6, src: "/images/fcca19.jpg", alt: "FCCA 6" },
     { id: 7, src: "/images/fcca20.jpg", alt: "FCCA 7" },
     { id: 8, src: "/images/fcca21.jpg", alt: "FCCA 8" },

@@ -54,20 +54,14 @@ export default function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg animate-slide-up">
               <Image src="/images/PAUL-PROFIL-PIC.jpg" alt="Paul Salvadori en action" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                
-                
-              </div>
+              <div className="absolute bottom-6 left-6 text-white"></div>
             </div>
 
             {/* Equipment */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg animate-slide-up animation-delay-200">
               <Image src="/images/PAUL-MAT-PIC.jpg" alt="Matériel photo de Paul" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                
-                
-              </div>
+              <div className="absolute bottom-6 left-6 text-white"></div>
             </div>
           </div>
         </div>
@@ -181,7 +175,8 @@ export default function About() {
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <p>Atteindre 25 000 abonnés Instagram            </div>
+                  <p>Atteindre 25&nbsp;000 abonnés Instagram</p>
+                </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                   <p>Continuer à développer ma passion photographique</p>
