@@ -16,7 +16,7 @@ const photoGroups = {
     { id: 5, src: "/images/athle102.jpg", alt: "Caen Athletic 5" },
     { id: 6, src: "/images/athle13.jpg", alt: "Caen Athletic 6" },
     { id: 7, src: "/images/athle12.jpg", alt: "Caen Athletic 7" },
-    { id: 8, src: "/images/athle5.jpg", alt: "Caen Athletic 8" },
+    { id: 8, src: "/images/athle301.jpg", alt: "Caen Athletic 8" },
     { id: 9, src: "/images/athle9.jpg", alt: "Caen Athletic 9" },
   ],
   AST: [
@@ -55,7 +55,7 @@ const photoGroups = {
   paysage: [
     { id: 1, src: "/images/paysage8.jpg", alt: "Paysage 1" },
     { id: 2, src: "/images/paysage205.jpg", alt: "Paysage 2" },
-    { id: 3, src: "/images/paysage5.jpg", alt: "Paysage 3" },
+    { id: 3, src: "/images/paysage301.jpg", alt: "Paysage 3" },
     { id: 4, src: "/images/paysage201.jpg", alt: "Paysage 4" },
     { id: 5, src: "/images/paysage202.jpg", alt: "Paysage 5" },
     { id: 6, src: "/images/paysage203.jpg", alt: "Paysage 6" },
