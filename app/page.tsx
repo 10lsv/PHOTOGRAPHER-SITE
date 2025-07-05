@@ -16,8 +16,8 @@ const photoGroups = {
     { id: 5, src: "/images/athle102.jpg", alt: "Caen Athletic 5" },
     { id: 6, src: "/images/athle13.jpg", alt: "Caen Athletic 6" },
     { id: 7, src: "/images/athle12.jpg", alt: "Caen Athletic 7" },
-    { id: 8, src: "/images/athle14.jpg", alt: "Caen Athletic 8" },
-    { id: 9, src: "/images/athle2.jpg", alt: "Caen Athletic 9" },
+    { id: 8, src: "/images/athle5.jpg", alt: "Caen Athletic 8" },
+    { id: 9, src: "/images/athle9.jpg", alt: "Caen Athletic 9" },
   ],
   AST: [
     { id: 1, src: "/images/tourla22.jpeg", alt: "AST 1" },
